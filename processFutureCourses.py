@@ -25,7 +25,7 @@ dt_fmt = "%m/%d/%Y %I:%M:%S %p"
 # and provide it as an argument to this script
 
 if len(sys.argv) == 1:
-    print('processFutureCourses.py Version 2020.01.20.30')
+    print('processFutureCourses.py Version 2020.01.20.40')
     print('Syntax: processFutureCourses.py <FutureCoursesReport.html>')
     sys.exit(1)
 fname = os.path.splitext(str(sys.argv[1]))[0]
