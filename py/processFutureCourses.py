@@ -14,7 +14,7 @@ from pathlib import Path
 from tzlocal import get_localzone
 
 # define version number
-ver = "2020.07.27.00"
+ver = "2020.08.03.00"
 
 # define Start Date format
 dt_fmt = "%m/%d/%Y %I:%M:%S %p"
@@ -145,10 +145,10 @@ except Exception as e:
 try:
     sav_File = datetime.today().strftime('%Y%m%d.') + os.path.basename(f"{fname}.htm")
     dtFname = "./html/_archive/" + sav_File
-    if Path(dtFname):
+    if os.path.isfile(dtFname):
         os.remove(dtFname)
-    print(sav_File)
     shutil.copyfile(f"{fname}.htm", "./html/" + sav_File)
     shutil.move("./html/" + sav_File, dtFname)
+    print(sav_File)
 except Exception as e:
     print("<p>Error: %s</p>" % e)
