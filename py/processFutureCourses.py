@@ -1,15 +1,12 @@
-from bs4 import BeautifulSoup
 # import requests
 import csv
-import sys
 import os
 import shutil
-
+import sys
 from datetime import datetime
+
 import pytz
-
-from pathlib import Path
-
+from bs4 import BeautifulSoup
 # reference: https://www.pluralsight.com/guides/extracting-data-html-beautifulsoup
 from tzlocal import get_localzone
 
@@ -45,8 +42,8 @@ fc_table = soup.find("table")
 
 # Get all the headings of Lists
 headings = {}
-for tr in fc_table.tbody.find_all("tr"):  # find all tr's from table's tbody
-    for td in tr.find_all("th"):  # find all td's from tr's
+for tr in fc_table.tbody.find_all("tr"):  # find all trs from table tbody
+    for td in tr.find_all("th"):  # find all tds from trs
         heading = td.text
         headings[heading.replace(' ', '_')] = heading.replace(' (UTC)', '')
     break
@@ -59,9 +56,9 @@ for k in list(headings)[-2:]:
 data = []
 k = 1
 # Get all the rows of table
-for tr in fc_table.tbody.find_all("tr"):  # find all tr's from table's tbody
+for tr in fc_table.tbody.find_all("tr"):  # find all trs from table tbody
     t_row = []
-    for td in tr.find_all("td"):  # find all td's from tr's
+    for td in tr.find_all("td"):  # find all tds from trs
         t_row.append(td.text.replace('\n', '').strip())
     if t_row:
         data.append(t_row)
