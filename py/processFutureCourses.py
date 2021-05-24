@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 from tzlocal import get_localzone
 
 # define version number
-ver = "2020.08.03.00"
+ver = "2021.03.22.00"
 
 # define Start Date format
 dt_fmt = "%m/%d/%Y %I:%M:%S %p"
@@ -33,7 +33,7 @@ if len(sys.argv) == 1:
 fname = os.path.splitext(str(sys.argv[1]))[0]
 
 # load the file saved from https://aysou.org/LMSAdmin/FutureCoursesReport.aspx
-html_content = open(f"{fname}.htm", "r")
+html_content = open(f"{fname}.html", "r")
 # Parse the html content
 soup = BeautifulSoup(html_content, "html.parser")
 
@@ -140,11 +140,11 @@ except Exception as e:
     print("<p>Error: %s</p>" % e)
 
 try:
-    sav_File = datetime.today().strftime('%Y%m%d.') + os.path.basename(f"{fname}.htm")
+    sav_File = datetime.today().strftime('%Y%m%d.') + os.path.basename(f"{fname}.html")
     dtFname = "./html/_archive/" + sav_File
     if os.path.isfile(dtFname):
         os.remove(dtFname)
-    shutil.copyfile(f"{fname}.htm", "./html/" + sav_File)
+    shutil.copyfile(f"{fname}.html", "./html/" + sav_File)
     shutil.move("./html/" + sav_File, dtFname)
     print(sav_File)
 except Exception as e:
